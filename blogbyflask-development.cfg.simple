@@ -1,2 +1,0 @@
-MONGODB_DB = "blogbyflaskDB"
-SECRET_KEY = "changethis"

@@ -15,28 +15,54 @@
   </div>
 </header>
 
+{%for i in post %}
 
-
-<!-- Main Content -->
-<div class="container">
-  <div class="row">
-    <div class="col-lg-8 col-md-10 mx-auto">
-    {% for post in posts %}
-      <div class="post-preview">
-        <a href="/">
-          <h2 class="post-title">
-            Psot title
-          </h2>
-          <h3 class="post-subtitle">
-            Post sup title
-          </h3>
+<div class="card">
+<a class="nav-link" aria-current="page"
+          href="{{ url_for('accounts.edit', post_id=i.id) }}">
+          edit
         </a>
-        <p class="post-meta">Posted by  on </p>
-      </div>
-      {% endfor %}
-      <hr>
-    </div>
-  </div>
+
+<a class="nav-link" aria-current="page"
+          href="{{ url_for('accounts.delete', post_id=i.id) }}">
+          delete
+        </a>
+
+  <div class="container">
+{{i.title }} 
+ <br>
+{{i.subtitle }}
+ <br>
+{{i.author }} 
+ <br>
+{{i.content }} 
+ <br>
+</div>
 </div>
 
+
+</div>
+{%endfor%}
+
+
+
+
+<style>
+.card {
+  /* Add shadows to create the "card" effect */
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  transition: 0.3s;
+}
+
+/* On mouse-over, add a deeper shadow */
+.card:hover {
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+
+/* Add some padding inside the card container */
+.container {
+  padding: 2px 16px;
+}
+
+</style>
 {% endblock %}
