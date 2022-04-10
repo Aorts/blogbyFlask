@@ -1,0 +1,41 @@
+version: '3'
+services:
+    mongodb:
+        image: mongo
+        container_name: blogbyflask-mongodb
+        volumes:
+            - ../deployment/blogbyflask/mongodb/data/db:/data/db
+            - /etc/localtime:/etc/localtime:ro
+        restart: always
+        networks:
+            - default
+        logging:
+            options:
+                max-size: "10m"
+                max-file: "3"
+    web:
+        build: .
+        image: blogbyflask-image
+        container_name: blogbyflask-web
+        volumes:
+            - ../deployment:/deployment
+            - /etc/localtime:/etc/localtime:ro
+        ports:
+            - 9000:9000
+        links:
+            - mongodb
+        networks:
+            - default
+        restart: always
+        environment:
+            BLOGBYFLASK_SETTINGS: /app/blogbyflask-production.cfg
+        command:
+            uwsgi --lazy-apps --ini scripts/blogbyflask-uwsgi.ini
+        logging:
+            options:
+                max-size: "10m"
+                max-file: "3"
+    
+
+networks:
+    default:

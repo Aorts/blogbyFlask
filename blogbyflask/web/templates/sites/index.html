@@ -1,0 +1,42 @@
+{% extends "base/default-page.html" %}
+
+{% block content %}
+<!-- Page Header -->
+<header class="masthead">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-10 mx-auto">
+        <div class="site-heading">
+          <h1>My Blog</h1>
+          <span class="subheading">A Blog by TS</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+
+
+<!-- Main Content -->
+<div class="container">
+  <div class="row">
+    <div class="col-lg-8 col-md-10 mx-auto">
+    {% for post in posts %}
+      <div class="post-preview">
+        <a href="/">
+          <h2 class="post-title">
+            Psot title
+          </h2>
+          <h3 class="post-subtitle">
+            Post sup title
+          </h3>
+        </a>
+        <p class="post-meta">Posted by  on </p>
+      </div>
+      {% endfor %}
+      <hr>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

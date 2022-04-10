@@ -1,0 +1,26 @@
+{
+  "name": "static",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "scss": "sass ./scss/main.scss ./css/style.css",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@fortawesome/fontawesome-free": "^5.15.4",
+    "axios": "^0.23.0",
+    "bootstrap": "^5.1.3",
+    "bootstrap-icons": "^1.7.2",
+    "datetimepicker": "^0.1.39",
+    "jquery": "^3.6.0",
+    "jquery-datetimepicker": "^2.5.21",
+    "sass": "^1.44.0",
+    "sortablejs": "^1.14.0",
+    "tom-select": "^2.0.0-rc.4",
+    "vue": "^3.1.5",
+    "vuedraggable": "^4.0.3"
+  }
+}
