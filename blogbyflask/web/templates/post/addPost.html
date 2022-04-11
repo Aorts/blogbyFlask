@@ -1,51 +1,65 @@
-  <link rel="stylesheet" type="text/css" media="all" href="{{ url_for('static', filename='css/style.css') }}">
+<link rel="stylesheet" type="text/css" media="all" href="{{ url_for('static', filename='css/style.css') }}">
 {% extends "base/default-page.html" %}
 
 {% block content %}
 <!-- Page Header -->
 <header class="masthead">
-  <div class="container">
-    <div class="row">
-      <div class="col-lg-8 col-md-10 mx-auto">
+  <div class="container position-relative px-4 px-lg-5">
+    <div class="row gx-4 gx-lg-5 justify-content-center">
+      <div class="col-md-10 col-lg-8 col-xl-7">
         <div class="site-heading">
-          <h1>Add Blog</h1>
+          <h1>ADDPOST</h1>
+          <span class="subheading">A Blog by TS</span>
         </div>
       </div>
     </div>
   </div>
 </header>
+<div class="container">
+  <form method="POST" enctype="multipart/form-data">
+    {{ form.csrf_token }}
 
- <form method="POST" enctype="multipart/form-data">
-      {{ form.csrf_token }}
+    <div class="col mb-3">
+      {{ form.title.label }}
+      {{ form.title }}
+    </div>
+    <div class="col mb-3">
+      {{ form.subtitle.label }}
+      {{ form.subtitle}}
+    </div>
+    <div class="col mb-3">
+      {{ form.author.label }}
+      {{ form.author }}
+    </div>
+    <div class="col mb-3">
+      {{ form.content.label }}
+      {{ form.content}}
+    </div>
+    <div class="col mb-3">
+      {{ form.upload_picture.label }}
+      {{ form.upload_picture(class="form-control custom-file-button", onchange="loadFile(event)", type="file",
+      accept="image/*") }}
+    </div>
+    
+    <img class="mt-3" id='output' style="width: auto; height: 360px; border-radius: 1rem;"
+    {% if 'edit' in request.path and post.picture %}
+      src="{{ url_for('accounts.get_image', post_id=post.id, filename=post.picture.filename, get_type='thumbnail') }}"
+    {% endif %}>
 
-                    {{ form.title.label }}
-                    {{ form.title }}
-                    {{ form.subtitle.label }}
-                    {{ form.subtitle}}
-                    {{ form.author.label }}
-                    {{ form.author }}
-                    {{ form.content.label }}
-                    {{ form.content}}
-                    {{ form.upload_picture.label }}
-            {{ form.upload_picture(class="form-control custom-file-button", onchange="loadFile(event)", type="file", accept="image/*") }}
-            {% if 'edit' in request.path and post.picture %}
-            <img class="mt-3" id='output' style="width: auto; height: 360px; border-radius: 1rem;"
-                src="{{ url_for('accounts.get_image', post_id=post.id, filename=post.picture.filename, get_type='thumbnail') }}">
-            {% endif %}
-
-    <div class="text-end float-button form-row my-3">
-        <button name="create" type="submit" class="btn btn-primary">
+    <div class="center">
+      <button name="create" type="submit" class="btn btn-primary" justify-content="center">
         {% if 'edit' in request.path %}
 
-          edit
+        edit
 
-          {%endif%}
-          {% if 'add' in request.path %}
+        {%endif%}
+        {% if 'add' in request.path %}
 
-          add
-          {%endif%}
-        </button>
-      </div>
+        add
+        {%endif%}
+      </button>
+    </div>
+</div>
 
 
 </form>

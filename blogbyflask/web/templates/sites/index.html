@@ -3,11 +3,11 @@
 {% block content %}
 <!-- Page Header -->
 <header class="masthead">
-  <div class="container">
-    <div class="row">
-      <div class="col-lg-8 col-md-10 mx-auto">
+  <div class="container position-relative px-4 px-lg-5">
+    <div class="row gx-1 gx-lg-5 justify-content-center">
+      <div class="col-md-10 col-lg-5 col-xl-7">
         <div class="site-heading">
-          <h1>My Blog</h1>
+          <h1>BlogbyFlask</h1>
           <span class="subheading">A Blog by TS</span>
         </div>
       </div>
@@ -15,30 +15,32 @@
   </div>
 </header>
 
+
 {%for i in post %}
-
-<div class="card">
-<a class="nav-link" aria-current="page"
-          href="{{ url_for('accounts.edit', post_id=i.id) }}">
-          edit
+<article class="mb-4">
+  <div class="container px-4 px-lg-5">
+    <div class="row gx-4 gx-lg-5 justify-content-center">
+      <div class="col-md-10 col-lg-8 col-xl-7">
+        <h2 class="section-heading">{{i.title }}</h2>
+        <h5>{{i.author }}</h5>
+        <blockquote class="blockquote">{{i.subtitle }}</blockquote>
+      </div>
+      <div class="card-body">
+        <a class="btn btn-primary" style="float: left" aria-current="page" href="{{ url_for('accounts.read', post_id=i.id) }}">
+          read
         </a>
-
-<a class="nav-link" aria-current="page"
-          href="{{ url_for('accounts.delete', post_id=i.id) }}">
+        <a class="btn btn-danger"style="float: right" aria-current="page" href="{{ url_for('accounts.delete', post_id=i.id) }}">
           delete
         </a>
+        <a class="btn btn-primary" style="float: right" aria-current="page" href="{{ url_for('accounts.edit', post_id=i.id) }}">
+          edit
+        </a>
+    
+    </div>
+  </div>
+  <hr>
+</article>
 
-  <div class="container">
-{{i.title }} 
- <br>
-{{i.subtitle }}
- <br>
-{{i.author }} 
- <br>
-{{i.content }} 
- <br>
-</div>
-</div>
 
 
 </div>
@@ -48,21 +50,20 @@
 
 
 <style>
-.card {
-  /* Add shadows to create the "card" effect */
-  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-  transition: 0.3s;
-}
+  .card {
+    /* Add shadows to create the "card" effect */
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    transition: 0.3s;
+  }
 
-/* On mouse-over, add a deeper shadow */
-.card:hover {
-  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
-}
+  /* On mouse-over, add a deeper shadow */
+  .card:hover {
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+  }
 
-/* Add some padding inside the card container */
-.container {
-  padding: 2px 16px;
-}
-
+  /* Add some padding inside the card container */
+  .container {
+    padding: 2px 16px;
+  }
 </style>
 {% endblock %}

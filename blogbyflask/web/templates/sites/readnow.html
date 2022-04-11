@@ -1,0 +1,57 @@
+{% extends "base/default-page.html" %}
+
+{% block content %}
+<!-- Page Header -->
+<header class="masthead">
+    <div class="container position-relative px-4 px-lg-5">
+        <div class="row gx-1 gx-lg-5 justify-content-center">
+            <div class="col-md-10 col-lg-5 col-xl-7">
+                <div class="site-heading">
+                    <h1>BlogbyFlask</h1>
+                    <span class="subheading">A Blog by TS</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+
+<article class="mb-4">
+    <div class="container px-4 px-lg-5">
+        <div class="row gx-4 gx-lg-5 justify-content-center">
+            <div class="col-md-10 col-lg-8 col-xl-7">
+                <h2 class="section-heading">{{post.title }}</h2>
+                <h5> author {{post.author }}</h5>
+                <h6> create {{post.created_date}} </h6>
+                {% if post.picture %}
+                <img src="{{ url_for('accounts.get_image', post_id=post.id, filename=post.picture.filename, get_type='thumbnail') }}"
+                    class="img-fluid rounded-3 mx-auto" alt="cover-image">
+                {% endif %}
+                <blockquote class="blockquote">{{post.subtitle }}</blockquote>
+                <p>{{post.content}}</p>
+            </div>
+
+        </div>
+        <hr>
+</article>
+
+
+
+<style>
+    .card {
+        /* Add shadows to create the "card" effect */
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+        transition: 0.3s;
+    }
+
+    /* On mouse-over, add a deeper shadow */
+    .card:hover {
+        box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+    }
+
+    /* Add some padding inside the card container */
+    .container {
+        padding: 2px 16px;
+    }
+</style>
+{% endblock %}

@@ -54,14 +54,15 @@ def edit(post_id):
             post=post,
                             form=form,
         )
-        if post.picture:
-            post.picture.replace(
-                data, filename=data.filename, content_type=data.content_type
-            )
-        else:
-            post.picture.put(
-                data, filename=data.filename, content_type=data.content_type
-            )
+    if form.upload_picture:
+        data = form.upload_picture.data
+        form.upload_picture.replace(
+            data, filename=data.filename, content_type=data.content_type
+        )
+    else:
+        post.upload_picture.put(
+            data, filename=data.filename, content_type=data.content_type
+        )
     form.populate_obj(post)
     post.save()
     return redirect(
@@ -103,4 +104,12 @@ def delete(post_id):
             "sites.index",
         )
     )
+
+@module.route("/<post_id>/read", methods=["GET", "POST"])
+def read(post_id):
+    post = models.Post.objects.get(id=post_id)
+    return render_template(
+        "sites/readnow.html",
+        post=post
+        )
 
