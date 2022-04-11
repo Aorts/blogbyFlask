@@ -22,7 +22,7 @@
             <div class="col-md-10 col-lg-8 col-xl-7">
                 <h2 class="section-heading">{{post.title }}</h2>
                 <h5> author {{post.author }}</h5>
-                <h6> create {{post.created_date}} </h6>
+                <h6> create {{post.created_date.strftime('%d-%m-%Y')}} </h6>
                 {% if post.picture %}
                 <img src="{{ url_for('accounts.get_image', post_id=post.id, filename=post.picture.filename, get_type='thumbnail') }}"
                     class="img-fluid rounded-3 mx-auto" alt="cover-image">

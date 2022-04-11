@@ -1,4 +1,14 @@
-from flask import (Blueprint , render_template, request, Response, send_file, redirect, url_for)
+from flask import (
+    Blueprint,
+    redirect,
+    render_template,
+    url_for,
+    redirect,
+    Response,
+    send_file,
+    request,
+)
+
 from datetime import datetime
 from blogbyflask import models
 from blogbyflask.web import forms
@@ -6,14 +16,6 @@ from blogbyflask.web import forms
 
 module = Blueprint("accounts", __name__, url_prefix="/accounts")
 
-@module.route("/")
-def index():
-    post = models.Post.objects()
-    return render_template(
-        "sites/index.html",
-        post=post
-        )
-        
 @module.route("/add", methods=["GET","POST"])
 def add():
     form = forms.PostForm()
@@ -54,15 +56,18 @@ def edit(post_id):
             post=post,
                             form=form,
         )
-    if form.upload_picture:
+
+    if form.upload_picture.data:
         data = form.upload_picture.data
-        form.upload_picture.replace(
-            data, filename=data.filename, content_type=data.content_type
-        )
-    else:
-        post.upload_picture.put(
-            data, filename=data.filename, content_type=data.content_type
-        )
+        if post.picture:
+            post.picture.replace(
+                data, filename=data.filename, content_type=data.content_type
+            )
+        else:
+            post.picture.put(
+                data, filename=data.filename, content_type=data.content_type
+            )
+
     form.populate_obj(post)
     post.save()
     return redirect(

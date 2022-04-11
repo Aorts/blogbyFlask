@@ -7,7 +7,6 @@ from .. import models
 
 
 
-
 class Post(me.Document):
     meta = {"collection": "Post"}
     title = me.StringField(required=True, min_length=1, max_length=200)

@@ -26,19 +26,22 @@
         <blockquote class="blockquote">{{i.subtitle }}</blockquote>
       </div>
       <div class="card-body">
-        <a class="btn btn-primary" style="float: left" aria-current="page" href="{{ url_for('accounts.read', post_id=i.id) }}">
+        <a class="btn btn-primary" style="float: left" aria-current="page"
+          href="{{ url_for('accounts.read', post_id=i.id) }}">
           read
         </a>
-        <a class="btn btn-danger"style="float: right" aria-current="page" href="{{ url_for('accounts.delete', post_id=i.id) }}">
+        <a class="btn btn-danger" style="float: right" aria-current="page"
+          href="{{ url_for('accounts.delete', post_id=i.id) }}">
           delete
         </a>
-        <a class="btn btn-primary" style="float: right" aria-current="page" href="{{ url_for('accounts.edit', post_id=i.id) }}">
+        <a class="btn btn-primary" style="float: right" aria-current="page"
+          href="{{ url_for('accounts.edit', post_id=i.id) }}">
           edit
         </a>
-    
+
+      </div>
     </div>
-  </div>
-  <hr>
+    <hr>
 </article>
 
 
